@@ -46,6 +46,11 @@ endif(NOT RAPIDJSONTEST)
 
 find_file(RAPIDJSON NAMES rapidjson rapidjson-1.1.0 PATHS ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty CMAKE_FIND_ROOT_PATH_BOTH)
 
+# RapidJson 1.1.0 doesn't have proper ARM64 support, so we must set endianness manually.
+# We only need this for ARM64 but all Windows/Mac platforms are little-endian, so this
+# doesn't hurt to do for unconditionally.
+add_definitions(-DRAPIDJSON_ENDIAN=RAPIDJSON_LITTLEENDIAN)
+
 add_library(rapidjson STATIC IMPORTED ${RAPIDJSON})
 
 # add subdirs
