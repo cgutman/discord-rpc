@@ -42,6 +42,7 @@ if(WIN32)
             endforeach()
         endif(USE_STATIC_CRT)
         target_compile_options(discord-rpc PRIVATE /EHsc
+            /Zi
             /Wall
             /wd4100 # unreferenced formal parameter
             /wd4514 # unreferenced inline
